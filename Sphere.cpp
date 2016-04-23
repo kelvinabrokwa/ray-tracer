@@ -12,7 +12,7 @@ bool Sphere::intersect_sphere(RAY_T ray, double &t, Vector &int_pt, Vector &norm
 {
     double A, B, C;
     A = 1;
-    B = 2 * ray.dir.dot(ray.origin - ctr);
+    B = 2.0 * ray.dir.dot(ray.origin - ctr);
     C = ((ray.origin - ctr) * (ray.origin - ctr)).sum_components() - pow(radius, 2);
     double discriminant = pow(B, 2) - 4*A*C;
     if (discriminant < 0) return false;

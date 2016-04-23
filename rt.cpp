@@ -22,7 +22,7 @@ COLOR_T trace(RAY_T ray, OBJ_T *list, Light light) {
     double min_t = INT_MAX, t;
     Vector int_pt, cl_int_pt;
     Vector normal, cl_normal;
-    OBJ_T *obj, *cl_obj;
+    OBJ_T *obj, *cl_obj = NULL;
     for (obj = list; obj != NULL; obj = obj->next) {
         if (obj->sphere.intersect_sphere(ray, t, int_pt, normal)) {
             if (t < min_t) {
@@ -42,7 +42,7 @@ int main() {
     OBJ_T *list = NULL;
     COLOR_T pixel;
     RAY_T ray;
-    Light light = *new Light(5, 5, 5);
+    Light light = *new Light(5., 10., 0.);
     ray.origin.set(0, 0, 0);
     read_objs(&list);
     std::cout << "P6\n1000 1000\n255\n";
@@ -56,6 +56,13 @@ int main() {
                 << (unsigned char)((pixel.g < 1 ? pixel.g : 1)* 255 )
                 << (unsigned char)((pixel.b < 1 ? pixel.b : 1)* 255 );
         }
+    }
+    // gc
+    OBJ_T *curr;
+    while (list != NULL) {
+        curr = list;
+        list = list->next;
+        delete curr;
     }
 }
 

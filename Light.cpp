@@ -20,9 +20,9 @@ COLOR_T Light::illuminate(RAY_T ray, COLOR_T surface_col, Vector int_pt, Vector 
     L.normalize();
     double dot = L.dot(normal);
     if (dot > 0) {
-        color.r = dot + surface_col.r;
-        color.g = dot + surface_col.g;
-        color.b = dot + surface_col.b;
+        color.r = dot * surface_col.r;
+        color.g = dot * surface_col.g;
+        color.b = dot * surface_col.b;
 
         // specular
         Vector R = L - normal * (2. * normal.dot(L));

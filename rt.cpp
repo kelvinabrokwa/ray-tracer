@@ -34,7 +34,7 @@ COLOR_T trace(RAY_T ray, OBJ_T *list, Light light) {
         }
     }
     if (cl_obj != NULL) {
-        return color = light.illuminate(ray, cl_obj->color, cl_int_pt, cl_normal);
+        color = light.illuminate(ray, cl_obj->color, cl_int_pt, cl_normal);
     }
     return color;
 }
@@ -48,13 +48,13 @@ int main() {
     std::cout << "P6\n1000 1000\n255\n";
     for (int y = 0; y < 1000; y++) {
         for (int x = 0; x < 1000; x++) {
-            ray.dir.set(-0.5 + x / 1000.0, 0.5 - y / 1000.0, 1);
+            ray.dir.set(-0.5 + x/1000.0, 0.5 - y/1000.0, 1);
             ray.dir.normalize();
             pixel = trace(ray, list, light);
             std::cout
-                << (unsigned char)((pixel.r < 1 ? pixel.r : 1)* 255 )
-                << (unsigned char)((pixel.g < 1 ? pixel.g : 1)* 255 )
-                << (unsigned char)((pixel.b < 1 ? pixel.b : 1)* 255 );
+                << (unsigned char)((pixel.r < 1 ? pixel.r : 1) * 255)
+                << (unsigned char)((pixel.g < 1 ? pixel.g : 1) * 255)
+                << (unsigned char)((pixel.b < 1 ? pixel.b : 1) * 255);
         }
     }
     // gc
